@@ -82,6 +82,20 @@ window.Moo = window.Moo || {};
     Moo.ui.toast(`回到 ${date} 啦`);
   }
 
+  // 清空记录：总计节省、get 的进度、那些瞬间都清掉，重要之物清单留着
+  async function wipeRecords() {
+    if (!await Moo.ui.ask('清空总计节省、get 了的进度和那些瞬间吗？\n重要之物会留着。', '清空')) return;
+    const { data } = Moo.store;
+    data.savedTotal = 0;
+    data.redirects = {};
+    data.skips = [];
+    data.moments = [];
+    Moo.store.save();
+    Moo.refreshAll();
+    Moo.ui.closeSheet();
+    Moo.ui.toast('清空啦');
+  }
+
   function open() {
     const { esc } = Moo.ui;
     const conf = uploadConf();
@@ -95,6 +109,7 @@ window.Moo = window.Moo || {};
       <div class="capsule-row">
         <button class="capsule" id="b-export">导出</button>
         <button class="capsule" id="b-import">导入</button>
+        <button class="capsule b-wipe" id="b-wipe">清空记录</button>
       </div>
       <input type="file" id="b-file" accept="application/json,.json" hidden>
       <p class="form-title">最近 ${KEEP_DAYS} 天的快照</p>
@@ -109,6 +124,7 @@ window.Moo = window.Moo || {};
         sheet.querySelector('#b-import').onclick = () => file.click();
         file.onchange = () => file.files[0] && importJSON(file.files[0]);
         sheet.querySelectorAll('[data-date]').forEach(b => b.onclick = () => restore(b.dataset.date));
+        sheet.querySelector('#b-wipe').onclick = wipeRecords;
         sheet.querySelector('#b-save').onclick = () => {
           const url = sheet.querySelector('#b-url').value.trim();
           localStorage.setItem(UPLOAD_KEY, JSON.stringify({ url, last: null }));

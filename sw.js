@@ -1,5 +1,5 @@
 // 离线缓存：装到主屏幕后没网也能打开。改了文件记得把 VERSION 加一
-const VERSION = 'moo-ment-v7';
+const VERSION = 'moo-ment-v8';
 const FILES = [
   './', './index.html', './manifest.json',
   './css/base.css', './css/splash.css', './css/home.css', './css/sheet.css', './css/result.css', './css/moments.css',

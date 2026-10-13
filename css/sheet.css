@@ -250,3 +250,6 @@
 }
 .confirm-cancel { background: var(--chip-bg); border: 1px solid var(--input-border); color: var(--text-secondary); }
 .confirm-ok { background: var(--danger-bg); border: 1px solid var(--danger-border); color: var(--danger); }
+
+/* 备份弹窗里的「清空记录」：淡红，跟删除一个颜色 */
+.sheet .capsule.b-wipe:not(.btn-main):not(.btn-ghost) { margin-left: auto; background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger); }

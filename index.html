@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Moo-ment">
+<meta name="theme-color" content="#F3E5F6">
+<title>Moo-ment ・ 哞一下</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="css/base.css?v=35">
+<link rel="stylesheet" href="css/splash.css?v=35">
+<link rel="stylesheet" href="css/home.css?v=35">
+<link rel="stylesheet" href="css/sheet.css?v=35">
+<link rel="stylesheet" href="css/result.css?v=35">
+<link rel="stylesheet" href="css/moments.css?v=35">
+</head>
+<body>
+
+<!-- 整台“手机”：电脑上是居中的竖屏卡片，手机上铺满。弹窗、开屏、底栏都关在里面
+     壁纸跟着 tab 换：.phone.on-moo / .phone.on-moments -->
+<div class="phone on-moo" id="phone">
+
+<!-- 开屏：两帧小牛走路（两张叠着切显隐，不换图，免得闪），点一下进入 -->
+<div id="splash" class="splash">
+  <div class="splash-frame f1"></div>
+  <div class="splash-frame f2"></div>
+</div>
+
+<!-- 顶栏：粉色渐变胶囊（学壁龛） -->
+<header class="topbar">
+  <!-- 趴在顶栏上沿的牛（学壁龛的小螃蟹），点一下会扭一扭 -->
+  <div class="mascot" id="mascot"></div>
+  <img class="topbar-icon" src="assets/icon-180.png" alt="">
+  <span class="topbar-title" id="topbar-title">Moo-ment</span>
+  <button class="icon-btn" id="btn-backup" aria-label="备份">
+    <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 002 2h10a2 2 0 002-2v-2"/></svg>
+  </button>
+</header>
+
+<!-- 中间的透明玻璃板，内容在里面滚 -->
+<main class="app" id="app">
+
+  <!-- ===== Tab 1 ===== -->
+  <section class="page active" id="page-moo">
+    <!-- 攒下的钱 + 代偿计数（常驻） -->
+    <div class="savings glass" id="savings"></div>
+
+    <!-- 想吃 / 想买：两颗并排的小胶囊；重要之物在下面 -->
+    <div class="pills">
+      <button class="pill pill-eat" data-ask="eat">想吃…</button>
+      <button class="pill pill-buy" data-ask="buy">想买…</button>
+    </div>
+
+    <!-- 换算区：每次用完就清空 -->
+    <div class="stage" id="stage"></div>
+
+    <!-- 重要之物：左对齐小标题 + 一件一件排开，底下一条进度 -->
+    <div class="section-head">
+      <span class="section-title">重要之物</span>
+      <button class="section-btn" id="btn-treasures" aria-label="编辑重要之物">
+        <svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4"/></svg>
+      </button>
+    </div>
+    <div class="treasures" id="treasures"></div>
+  </section>
+
+  <!-- ===== Tab 2 ===== -->
+  <section class="page" id="page-moments">
+    <p class="moments-lead" id="moments-lead"></p>
+    <div class="moments" id="moments"></div>
+  </section>
+</main>
+
+<!-- 底栏：玻璃，只有图标 -->
+<nav class="tabbar">
+  <button class="tab active" data-page="page-moo" aria-label="哞一下"><img class="tab-icon" src="assets/tab-1.png" alt="">
+  </button>
+  <button class="tab" data-page="page-moments" aria-label="那些瞬间"><img class="tab-icon" src="assets/tab-2.png" alt="">
+  </button>
+</nav>
+
+<!-- 底部弹窗的容器 -->
+<div class="sheet-mask" id="sheet-mask"></div>
+<div class="sheet" id="sheet"></div>
+
+<!-- 小卡片（省钱成功 / 犒劳自己） -->
+<div class="card-mask" id="card-mask"></div>
+<div class="pop-card" id="pop-card"></div>
+
+</div><!-- /phone -->
+
+<script src="js/store.js?v=35"></script>
+<script src="js/convert.js?v=35"></script>
+<script src="js/words.js?v=35"></script>
+<script src="js/ui.js?v=35"></script>
+<script src="js/splash.js?v=35"></script>
+<script src="js/savings.js?v=35"></script>
+<script src="js/treasures.js?v=35"></script>
+<script src="js/flow.js?v=35"></script>
+<script src="js/moments.js?v=35"></script>
+<script src="js/backup.js?v=35"></script>
+<script src="js/app.js?v=35"></script>
+</body>
+</html>

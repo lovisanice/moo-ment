@@ -1,0 +1,212 @@
+/* 弹窗 + 小卡片 —— 照琥珀厅记忆弹窗的分寸：浅暖白玻璃、小标签、细边输入框、小按钮 */
+
+.sheet-mask, .card-mask {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-tint);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 50;
+}
+.sheet-mask.show, .card-mask.show { opacity: 1; pointer-events: auto; }
+
+/* 居中的弹窗卡片 */
+.sheet, .pop-card {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 88%;
+  max-width: 360px;
+  max-height: 78%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: var(--modal-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--modal-border);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px var(--modal-shadow), 0 2px 8px var(--modal-shadow-near);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -46%) scale(.96);
+  transition: transform .3s ease, opacity .22s ease;
+  z-index: 60;
+}
+.sheet { padding: 36px 18px 16px; }
+.sheet.show, .pop-card.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.sheet::-webkit-scrollbar { display: none; }
+
+.sheet-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--close-bg);
+  color: var(--text-tertiary);
+  display: flex; align-items: center; justify-content: center;
+}
+.sheet-close svg { width: 12px; height: 12px; stroke-width: 2.2; }
+.sheet-close:active { background: var(--close-bg-press); }
+
+/* 趴牛：趴在弹窗上沿 */
+.sheet.has-cow { overflow: visible; padding-top: 40px; }
+.sheet-cow {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  aspect-ratio: 900 / 337;
+  background: url("../assets/lying.png") center bottom / contain no-repeat;
+  pointer-events: none;
+}
+
+.sheet h2 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 字段：小标签 + 细边输入框 */
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.field span {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: .2px;
+}
+.field input, .field textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  font-size: 11px;
+  outline: none;
+  transition: border-color .15s;
+}
+.field textarea { resize: none; min-height: 72px; line-height: 1.6; }
+.field input:focus, .field textarea:focus { border-color: var(--accent-border); }
+.field-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
+
+/* 主按钮：右下角一个小小的实色按钮 */
+.btn-main {
+  display: flex;
+  width: fit-content;
+  margin: 14px 0 0 auto;
+  padding: 7px 18px;
+  border-radius: 10px;
+  background: var(--accent);
+  border: none;
+  box-shadow: none;
+  color: var(--text-on-accent);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.btn-main:active { transform: none; background: var(--accent-deep); box-shadow: none; }
+.btn-ghost {
+  display: block;
+  width: fit-content;
+  margin: 8px 0 0 auto;
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--text-tertiary);
+  font-size: 9.5px;
+  font-weight: 500;
+}
+
+/* 弹窗里的次要按钮：淡色底 + 细边 + 彩色字 */
+.sheet .capsule:not(.btn-main):not(.btn-ghost) {
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-tint);
+  box-shadow: none;
+  color: var(--accent-deep);
+  font-size: 9.5px;
+  font-weight: 600;
+}
+.sheet .capsule-row { display: flex; gap: 8px; margin-bottom: 14px; }
+
+/* 重要之物清单 */
+.treasure-list { display: grid; gap: 6px; margin-bottom: 14px; }
+.treasure-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 10px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+}
+.treasure-name { flex: 1; font-size: 11.5px; color: var(--text-primary); }
+.treasure-price { font-size: 9.5px; color: var(--text-tertiary); }
+.mini-btn {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--close-bg);
+  color: var(--text-tertiary);
+  display: flex; align-items: center; justify-content: center;
+}
+.mini-btn svg { width: 12px; height: 12px; stroke-width: 2; }
+.treasure-empty { text-align: center; color: var(--text-tertiary); font-size: 10.5px; padding: 8px 0; }
+.form-title {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin: 0 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--divider);
+}
+
+/* 小卡片：竖着的细长条，花束斜着插在左下角 */
+.pop-card {
+  width: 200px;
+  max-width: none;
+  min-height: 390px;
+  overflow: visible;
+  padding: 30px 20px 20px 22px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.pop-card-img {
+  /* 不钉死位置：排在标签和「收下」之间，标签多了卡片变长、花跟着往下挪，不会被压住 */
+  order: 1;
+  flex-shrink: 0;
+  position: relative;
+  width: 140px;
+  height: 190px;
+  margin: auto 0 auto 44px;          /* 上下居中在标签和按钮之间的空白里，偏右一点 */
+  transform: rotate(-20deg);
+  transform-origin: 50% 100%;
+  background: center bottom / contain no-repeat;
+  pointer-events: none;
+}
+.pop-card-text { font-size: 13.5px; line-height: 1.85; color: var(--text-primary); margin: 0; }
+.pop-card .btn-main { order: 2; margin: 0 0 0 auto; position: relative; z-index: 1; }
+
+.redirect-title { font-size: 9.5px; font-weight: 600; color: var(--text-tertiary); margin: 18px 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start; }
+.sheet .chips { justify-content: flex-start; margin-bottom: 12px; }
+.chip {
+  border-radius: 10px;
+  padding: 4px 10px;
+  font-size: 9.5px;
+  font-weight: 600;
+  background: var(--chip-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-secondary);
+}
+.chip.on { background: var(--accent-tint); border-color: var(--accent-border); color: var(--accent-deep); }

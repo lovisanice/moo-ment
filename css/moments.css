@@ -1,0 +1,123 @@
+/* Tab 2：那些瞬间——一行一行的缩略 + 点开的卡片（照琥珀厅记忆） */
+
+.moments-lead {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  line-height: 1.8;
+  margin: 2px 8px 14px;
+}
+
+.moments { display: grid; gap: 8px; }
+
+.moment-month {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: .5px;
+  margin: 6px 0 -2px 6px;
+}
+.moment-month:first-child { margin-top: 0; }
+
+.moment-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px 11px 12px;
+  border-radius: 14px;
+  text-align: left;
+  transition: transform .12s ease;
+}
+.moment-row:active { transform: scale(.985); }
+.moment-kind {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 8px;
+  color: var(--accent-deep);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-border);
+}
+.moment-kind.buy {
+  color: var(--item-0);
+  background: color-mix(in srgb, var(--item-0) 12%, transparent);
+  border-color: color-mix(in srgb, var(--item-0) 30%, transparent);
+}
+.moment-what {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moment-price {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-deep);
+  flex-shrink: 0;
+}
+
+/* 点开的卡片 */
+.m-what {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.m-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.m-chip {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--chip-bg);
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+.m-chip-accent { color: var(--accent-deep); background: var(--accent-tint); }
+
+.m-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin: 0 0 4px;
+}
+.m-quote {
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  background: var(--quote-bg);
+  border-left: 2px solid var(--quote-border);
+  border-radius: 0 10px 10px 0;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+.m-quote-mood { background: var(--accent-tint); border-left-color: var(--accent-border); }
+
+.m-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--divider);
+}
+.m-del {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border: 1px solid var(--danger-border);
+  border-radius: 10px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 9.5px;
+  font-weight: 600;
+}
+.m-del svg { width: 12px; height: 12px; }
+.m-del.confirm { background: var(--danger-bg-strong); }

@@ -1,0 +1,307 @@
+/* 猫啃糖圆体（OFL 免费商用，授权见 assets/fonts/TangYuan-OFL.txt）
+   它只有全角「￥」「・」，所以代码里一律用全角；缺的生僻字会自动用系统字体顶上 */
+@font-face {
+  font-family: "TangYuan";
+  src: url("../assets/fonts/tangyuan.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* ===== 颜色全走变量（取自琲琲画的小牛） ===== */
+:root {
+  --bg: #F3E5F6;              /* 淡紫底（壁纸没到时兜底） */
+  --bg-element: #FFFFFF;
+  --bg-hover: rgba(255, 255, 255, 0.55);
+  --bg-note: #FFF8E6;         /* 便签黄 */
+  --pink-note: #FDE6EC;       /* 便签粉 */
+  --buy-note: #DCEBFF;        /* 便签蓝 */
+  --text-primary: #2B2328;
+  --text-secondary: #7A6B76;
+  --text-tertiary: #A898A5;
+  --text-on-accent: #FFFFFF;
+  --accent: #F3AFC0;          /* 樱花粉 */
+  --accent-light: #FBDDE5;
+  --accent-bg: rgba(243, 175, 192, 0.18);
+  --accent-deep: #EE8FAA;     /* 粉色的字：淡淡的樱花粉，但不发灰 */
+  --accent-tint: rgba(243, 175, 192, 0.10);
+  --accent-border: rgba(243, 175, 192, 0.45);
+  --cow-black: #1E1A1D;
+
+  /* 顶栏：牛鼻子粉渐变（壁龛是 Claude 橙） */
+  --topbar-a: #F4B6C5;
+  --topbar-b: #FAD3DC;
+  --topbar-c: #F2ABBD;
+  --topbar-shadow: rgba(217, 122, 144, 0.16);
+  --topbar-text-shadow: rgba(214, 110, 140, 0.35);
+
+  /* 透明玻璃（壁龛的老规矩：不是毛玻璃，透得出底下的画） */
+  --glass-panel: rgba(255, 255, 255, 0.50);
+  --glass-panel-border: rgba(255, 255, 255, 0.55);
+  --glass-card-bg: rgba(255, 255, 255, 0.75);
+  --glass-card-border: rgba(255, 255, 255, 0.80);
+  --glass-card-highlight: rgba(255, 255, 255, 0.95);
+  --glass-shadow-near: rgba(140, 80, 130, 0.08);
+  --glass-shadow: rgba(140, 80, 130, 0.12);
+  --glass-shadow-hover: rgba(140, 80, 130, 0.20);
+  --glass-solid: rgba(255, 255, 255, 0.86);   /* 弹窗用，实一点免得字打架 */
+
+  --treasure: rgba(194, 168, 238, 0.35);       /* 选中的 chip */
+  --treasure-deep: rgba(146, 119, 207, 0.6);
+
+  /* 弹窗（琥珀厅同款分寸） */
+  --overlay-tint: rgba(255, 255, 255, 0.08);
+  --modal-bg: rgba(254, 251, 252, 0.90);
+  --modal-border: rgba(255, 255, 255, 0.5);
+  --modal-shadow: rgba(0, 0, 0, 0.08);
+  --modal-shadow-near: rgba(0, 0, 0, 0.04);
+  --close-bg: rgba(0, 0, 0, 0.05);
+  --close-bg-press: rgba(0, 0, 0, 0.10);
+  --input-border: rgba(0, 0, 0, 0.08);
+  --input-bg: rgba(255, 255, 255, 0.5);
+  --chip-bg: rgba(0, 0, 0, 0.03);
+  --divider: rgba(0, 0, 0, 0.05);
+  --receipt-dash: rgba(0, 0, 0, 0.09);
+  --quote-bg: rgba(0, 0, 0, 0.025);
+  --quote-border: rgba(0, 0, 0, 0.10);
+  --danger: #C0443C;
+  --danger-bg: rgba(220, 80, 70, 0.05);
+  --danger-bg-strong: rgba(220, 80, 70, 0.14);
+  --danger-border: rgba(220, 80, 70, 0.2);
+
+  /* 每件重要之物的名字各一个颜色：粉、紫、蓝系的淡莫兰迪（按顺序分配，存在数据里不会变） */
+  --item-0: #9BB4D4;   /* 雾蓝 */
+  --item-1: #D8A7B5;   /* 灰粉 */
+  --item-2: #B3A5CF;   /* 雾紫 */
+  --item-3: #8FAFC9;   /* 灰蓝 */
+  --item-4: #D49CA8;   /* 豆沙粉 */
+  --item-5: #C4A4C9;   /* 丁香紫 */
+  --item-6: #A7B8DE;   /* 烟蓝 */
+  --item-7: #E0B4C2;   /* 藕粉 */
+
+  --border: #E6D6EA;
+  --border-light: rgba(255, 255, 255, 0.7);
+  --mask: rgba(43, 35, 40, 0.30);
+  --desk-bg: #ECE9EC;         /* 电脑上手机外面的底色 */
+  --desk-shadow: rgba(60, 40, 60, 0.22);
+
+  /* 两个 tab 的壁纸（琲琲画的：睁眼 / 笑眼）。路径相对 css/ 文件夹 */
+  --wall-moo: url("../assets/wall-1.jpg");
+  --wall-moments: url("../assets/wall-2.jpg");
+
+  --radius-candy: 999px;
+  --radius-card: 22px;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: "TangYuan", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+button { font-family: inherit; color: inherit; border: none; cursor: pointer; }
+input, textarea { font-family: inherit; color: var(--text-primary); }
+/* 所有滚动区都藏起滚动条，照样能滑 */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
+
+svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ===== 整台“手机”：壁纸 + 顶栏 / 玻璃板 / 底栏 竖着排 =====
+   transform 让里面的 fixed 元素（弹窗、开屏）都以它为边界 */
+.phone {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(40px + var(--safe-top));   /* 给趴在顶栏上的牛留位置 */
+  background: var(--bg) center / cover no-repeat;
+  transform: translateZ(0);
+  transition: background-image .3s;
+}
+.phone.on-moo { background-image: var(--wall-moo); }
+.phone.on-moments { background-image: var(--wall-moments); }
+
+/* 电脑 / 平板横着放：固定手机比例的竖屏卡片居中，外面是中性灰底 */
+@media (min-width: 600px) and (min-height: 560px) {
+  html, body { background: var(--desk-bg); }
+  body { display: flex; align-items: center; justify-content: center; }
+  .phone {
+    height: min(88vh, 900px);
+    width: auto;
+    aspect-ratio: 390 / 844;
+    border-radius: 44px;
+    padding-top: 50px;
+    box-shadow: 0 0 0 10px var(--bg-element), 0 24px 60px var(--desk-shadow);
+  }
+}
+
+/* ===== 顶栏：粉色渐变胶囊 ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--topbar-a) 0%, var(--topbar-b) 50%, var(--topbar-c) 100%);
+  border: 1px solid var(--glass-panel-border);
+  box-shadow: 0 2px 10px var(--topbar-shadow), inset 0 1px 0 var(--glass-panel-border);
+  color: var(--text-on-accent);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 4;
+}
+/* 趴在顶栏上沿的牛：慢慢呼吸，点一下扭一扭，算账时也会动 */
+.mascot {
+  position: absolute;
+  top: -33px;
+  left: 50%;
+  width: 118px;
+  aspect-ratio: 900 / 337;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+  background: url("../assets/lying.png") center bottom / contain no-repeat;
+  cursor: pointer;
+  animation: mascot-breathe 3.6s ease-in-out infinite;
+}
+@keyframes mascot-breathe {
+  0%, 100% { transform: translateX(-50%) scale(1, 1); }
+  50% { transform: translateX(-50%) scale(1.015, 1.05); }
+}
+.mascot.wiggle { animation: mascot-wiggle .6s ease; }
+@keyframes mascot-wiggle {
+  0%, 100% { transform: translateX(-50%) rotate(0); }
+  25% { transform: translateX(-50%) rotate(-4deg); }
+  60% { transform: translateX(-50%) rotate(3deg); }
+}
+.mascot.busy { animation: mascot-busy .5s ease-in-out infinite alternate; }
+@keyframes mascot-busy { to { transform: translateX(-50%) translateY(-3px); } }
+
+.topbar-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--glass-card-border);
+}
+.topbar-title { text-shadow: 0 1px 2px var(--topbar-text-shadow); font-size: 14px; font-weight: 800; letter-spacing: .5px; flex: 1; }
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--glass-panel);
+  color: var(--text-on-accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.icon-btn svg { width: 18px; height: 18px; stroke-width: 2.2; }
+.icon-btn:active { transform: scale(.92); }
+
+/* ===== 中间的透明玻璃板 ===== */
+.app {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 10px 10px 0;
+  padding: 16px 14px 20px;
+  background: var(--glass-panel);
+  border: 1px solid var(--glass-panel-border);
+  border-bottom: none;
+  border-radius: 22px 22px 0 0;
+}
+
+/* ===== 底栏：接在玻璃板下面 ===== */
+.tabbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 10px calc(10px + var(--safe-bottom));
+  padding: 6px 0;
+  background: var(--glass-panel);
+  border: 1px solid var(--glass-panel-border);
+  border-top: 1px solid var(--border-light);
+  border-radius: 0 0 22px 22px;
+  flex-shrink: 0;
+  z-index: 3;
+}
+.tab {
+  width: 72px; height: 44px;
+  border-radius: var(--radius-candy);
+  background: transparent;
+  color: var(--text-tertiary);
+  display: flex; align-items: center; justify-content: center;
+  transition: color .15s, background .2s;
+}
+/* 琲琲画的像素图标：没选中淡一点，选中实一点 */
+.tab-icon {
+  width: 24px; height: 26px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  opacity: .32;
+  transition: opacity .15s;
+}
+.tab.active .tab-icon { opacity: .85; }
+.tab.active { color: var(--accent-deep); background: var(--accent-bg); }
+.tab:active { transform: scale(.92); }
+
+.page { display: none; }
+.page.active { display: block; animation: page-in .28s ease; }
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ===== 玻璃卡片（壁龛同款：白边 + 顶边高光 + 柔影） ===== */
+.glass {
+  background: var(--glass-card-bg);
+  border: 1.5px solid var(--glass-card-border);
+  border-radius: var(--radius-card);
+  box-shadow:
+    inset 0 1px 0 var(--glass-card-highlight),
+    0 1px 3px var(--glass-shadow-near),
+    0 6px 16px var(--glass-shadow);
+}
+
+/* ===== 胶囊按钮：透明白玻璃，按下去回弹 ===== */
+.capsule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-candy);
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  background: var(--glass-card-bg);
+  border: 1.5px solid var(--glass-card-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-card-highlight),
+    0 1px 3px var(--glass-shadow-near),
+    0 6px 16px var(--glass-shadow);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.capsule:active {
+  transform: scale(.97);
+  box-shadow: inset 0 1px 0 var(--glass-card-highlight), 0 2px 6px var(--glass-shadow-near);
+}
+
+/* toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(80px + var(--safe-bottom));
+  transform: translateX(-50%);
+  background: var(--cow-black);
+  color: var(--text-on-accent);
+  padding: 10px 18px;
+  border-radius: var(--radius-candy);
+  font-size: 12.5px;
+  z-index: 100;
+  white-space: nowrap;
+  animation: toast-in .2s ease;
+}
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }

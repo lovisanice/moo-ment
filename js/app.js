@@ -35,6 +35,8 @@ window.Moo = window.Moo || {};
         const phone = document.getElementById('phone');
         phone.classList.toggle('on-moo', tab.dataset.page === 'page-moo');
         phone.classList.toggle('on-moments', tab.dataset.page === 'page-moments');
+        document.documentElement.classList.toggle('on-moo', tab.dataset.page === 'page-moo');
+        document.documentElement.classList.toggle('on-moments', tab.dataset.page === 'page-moments');
         document.getElementById('app').scrollTop = 0;
       });
     });

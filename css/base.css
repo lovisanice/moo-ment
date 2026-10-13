@@ -129,9 +129,13 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .phone.on-moo { background-image: var(--wall-moo); }
 .phone.on-moments { background-image: var(--wall-moments); }
 
+/* 手机上 body 底下也铺同一张壁纸：iOS 上“手机”只要比屏幕矮一点，露出来的也是壁纸，不会多一条边 */
+html.on-moo, html.on-moo body { background: var(--bg) var(--wall-moo) center / cover no-repeat; }
+html.on-moments, html.on-moments body { background: var(--bg) var(--wall-moments) center / cover no-repeat; }
+
 /* 电脑 / 平板横着放：固定手机比例的竖屏卡片居中，外面是中性灰底 */
 @media (min-width: 600px) and (min-height: 560px) {
-  html, body { background: var(--desk-bg); }
+  html, body, html.on-moo, html.on-moo body, html.on-moments, html.on-moments body { background: var(--desk-bg); }
   body { display: flex; align-items: center; justify-content: center; }
   .phone {
     height: min(88vh, 900px);

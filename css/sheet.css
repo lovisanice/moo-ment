@@ -150,7 +150,7 @@
   background: var(--input-bg);
   border: 1px solid var(--input-border);
 }
-.treasure-name { flex: 1; font-size: 11.5px; color: var(--text-primary); }
+.treasure-name { flex: 1; font-size: 11.5px; }
 .treasure-price { font-size: 9.5px; color: var(--text-tertiary); }
 .mini-btn {
   width: 24px; height: 24px;
@@ -210,3 +210,43 @@
   color: var(--text-secondary);
 }
 .chip.on { background: var(--accent-tint); border-color: var(--accent-border); color: var(--accent-deep); }
+
+/* 页面自己的确认小卡片（压在弹窗上面） */
+.confirm-mask {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-tint);
+  opacity: 0;
+  transition: opacity .2s ease;
+  z-index: 80;
+}
+.confirm-mask.show { opacity: 1; }
+.confirm-card {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 72%;
+  max-width: 260px;
+  padding: 20px 16px 14px;
+  background: var(--modal-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--modal-border);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px var(--modal-shadow), 0 2px 8px var(--modal-shadow-near);
+  opacity: 0;
+  transform: translate(-50%, -46%) scale(.96);
+  transition: transform .25s ease, opacity .2s ease;
+  z-index: 81;
+}
+.confirm-card.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.confirm-text { font-size: 12.5px; line-height: 1.75; color: var(--text-primary); margin: 0 0 14px; text-align: center; }
+.confirm-btns { display: flex; justify-content: center; gap: 8px; }
+.confirm-btns button {
+  padding: 6px 18px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.confirm-cancel { background: var(--chip-bg); border: 1px solid var(--input-border); color: var(--text-secondary); }
+.confirm-ok { background: var(--danger-bg); border: 1px solid var(--danger-border); color: var(--danger); }

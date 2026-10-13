@@ -57,11 +57,11 @@ window.Moo = window.Moo || {};
 
   function importJSON(file) {
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       try {
         const next = JSON.parse(reader.result);
         if (!Array.isArray(next.treasures)) throw new Error('bad');
-        if (!confirm('用这份备份替换现在的数据吗？')) return;
+        if (!await Moo.ui.ask('用这份备份替换现在的数据吗？', '替换')) return;
         Moo.store.replace(next);
         Moo.refreshAll();
         Moo.ui.closeSheet();
@@ -73,9 +73,9 @@ window.Moo = window.Moo || {};
     reader.readAsText(file);
   }
 
-  function restore(date) {
+  async function restore(date) {
     const snap = snaps().find(s => s.date === date);
-    if (!snap || !confirm(`回到 ${date} 那天的数据吗？\n现在的数据会被替换。`)) return;
+    if (!snap || !await Moo.ui.ask(`回到 ${date} 那天的数据吗？\n现在的数据会被替换。`, '回去')) return;
     Moo.store.replace(snap.data);
     Moo.refreshAll();
     Moo.ui.closeSheet();

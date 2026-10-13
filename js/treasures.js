@@ -68,12 +68,12 @@ Moo.treasures = {
     Moo.savings.render();
   },
 
-  remove(id) {
+  async remove(id) {
     const { data } = Moo.store;
     const t = data.treasures.find(x => x.id === id);
     if (!t) return;
     const hasSaved = data.redirects[id] > 0;
-    if (!confirm(`删掉「${t.name}」吗？` + (hasSaved ? '\n存给它的代偿计数也会一起消失（总数不变）。' : ''))) return;
+    if (!await Moo.ui.ask(`删掉「${t.name}」吗？` + (hasSaved ? '\n存给它的代偿计数也会一起消失，总计节省不变。' : ''))) return;
     data.treasures = data.treasures.filter(x => x.id !== id);
     delete data.redirects[id];
     Moo.store.save();
